@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=Windows-1251">
+    <link type="text/css" rel="stylesheet" href="GWT1.css">
+   <title>Web Application Starter Project</title>
+    <script type="text/javascript" language="javascript" src="gwt1/gwt1.nocache.js"></script>
+  </head>
+  <body>
+     <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+   
+   <div id="gwtContainer"></div>
+   
+   
+<h2>Куда держите путь?</h2>
+Из Санкт-петербурга доступны следующие горнолыжные курорты:<br>
+<form method = POST>
+<select name = "curorts">
+	<option value = "719">Финляндия, Вуокатти</option>
+	<option value = "196">Финляндия, Иматра</option>
+	<option value = "860">Финляндия, Исо-Сюете</option>
+	<option value = "450">Финляндия, Калпалинна</option>
+	<option value = "507">Финляндия, Касурила</option>
+	<option value = "514">Финляндия, Коли</option>
+	<option value = "1237">Финляндия, Леви</option>
+	<option value = "305">Финляндия, Лекотти</option>
+	<option value = "1157">Финляндия, Пюха</option>
+	<option value = "1007">Финляндия, Рука</option>
+	<option value = "1428">Швеция, Оре</option>
+</select>
+<br>
+<br>
+Через какую таможню планируете пересечь границу?<br>
+<select name = "customs">
+	<option value = "200">Торфяновка</option>
+	<option value = "170">Брусничное</option>
+	<option value = "190">Светогорск</option>
+	<option value = "250">Лесом</option>
+	<option value = "1222">121212</option>
+	<option value = "2455">121244444</option>
+	<option value = "124dsdd">tgdaadsf</option>
+	<option value = "12">adsasda</option>
+</select>
+<br>
+<br>
+Выберете свой авто из списка, для уточнения расхода топлива. Или укажите его самостоятельно.
+<br>
+<select name = "brand">
+	<option value = "8">Asia</option>
+	<option value = "9">Aston Martin</option>
+	<option value = "10">Audi</option>
+	<option value = "11">BMW</option>	
+</select>
+<select name = "model">
+	<option value = "1">MC 1</option>
+	<option value = "3">Ace</option>
+	<option value = "4">Aceca</option>
+	<option value = "5">Cobra</option>
+</select>
+<select>
+	<option>Год выпуска</option>
+</select>
+<select>
+	<option>Двигатель</option>
+</select>
+<br>
+<br>
+Размер топливного бака.
+<br>
+<input type = text value = "50" size = 2 name = "tank"> л.
+<br>
+Расход топлива на 100 км.
+<br>
+<input type = text value = "6.2" size= "2" name = "rashod"> л.
+<br>
+<br>
+Возьмете с собой канистру на 20л?
+<br>
+<input type = "checkbox" name = "kanistra" value = "ok"> ДА!
+<br>
+<br>
+<input type = submit value = "В путь!" name = "submit">
+</form>
+<br><br>
+
+
+
+
+    <table align="center">
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
+      </tr>
+      <tr>
+        <td id="nameFieldContainer"></td>
+        <td id="sendButtonContainer"></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
+      </tr>
+      <tr>
+      <td id="timeButtonContainer"></td>
+      </tr>
+    </table>
+  </body>
+</html>
