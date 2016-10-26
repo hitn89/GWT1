@@ -3,15 +3,32 @@ package ru.andrinn.gwt1.server;
 import ru.andrinn.gwt1.client.GreetingService;
 import ru.andrinn.gwt1.shared.FieldVerifier;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+//import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 
 /**
  * The server-side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
+	
+	
+	private static final String url = "jdbc:mysql://localhost:3306/javap";
+	private static final String user = "root";
+	private static final String password = "";
+	private static Connection con;
+	private static Statement stmt;
+	private static ResultSet rs;
+	
 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
@@ -50,4 +67,59 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	public String getTime() {
 		return escapeHtml(new Date().toString());
 	}
+	
+
+		
+	public ArrayList<String> getSelect() {
+
+		String query = "select * from customs";
+		//String result = "";
+		List<String> customs = new ArrayList<String>();
+		
+		try {
+			con = (Connection) DriverManager.getConnection(url, user, password);
+			stmt = (Statement) con.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				customs.add(rs.getInt(1), rs.getString(2));
+				//result += rs.getString(2);
+			}
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+		} finally {
+			try {con.close();} catch (SQLException se) {}
+			try {stmt.close();} catch (SQLException se) {}
+			try {rs.close();} catch (SQLException se) {}
+		}
+		
+		return (ArrayList<String>) customs;
+	}
+	
+	
+//	public ListBox getSelect2() {
+//
+//		String query = "select * from customs";
+//		ListBox listBox1 = new ListBox();
+//		listBox1.setVisibleItemCount(1);
+//		
+//		try {
+//			con = (Connection) DriverManager.getConnection(url, user, password);
+//			stmt = (Statement) con.createStatement();
+//			rs = stmt.executeQuery(query);
+//			while (rs.next()) {
+//				listBox1.addItem(rs.getString(2), rs.getString(1));
+//			}
+//		} catch (SQLException sqlEx) {
+//			sqlEx.printStackTrace();
+//		} finally {
+//			try {con.close();} catch (SQLException se) {}
+//			try {stmt.close();} catch (SQLException se) {}
+//			try {rs.close();} catch (SQLException se) {}
+//		}
+//		
+//		return listBox1;
+//	}
+//	
+	
+	
 }

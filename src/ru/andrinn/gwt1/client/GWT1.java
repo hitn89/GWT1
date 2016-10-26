@@ -1,6 +1,8 @@
 package ru.andrinn.gwt1.client;
 
 import ru.andrinn.gwt1.shared.FieldVerifier;
+
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -17,11 +19,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -39,82 +38,17 @@ public class GWT1 implements EntryPoint {
 	 */
 	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
-	
-	// MYSQL
-	
-	private static final String url = "jdbc:mysql://localhost:3306/javap";
-	private static final String user = "root";
-	private static final String password = "";
-	private static Connection con;
-	private static Statement stmt;
-	private static ResultSet rs;
 
-//
-//	public void ReaderMySQL() {
-//
-//		String query = "select * from customs";
-//
-//		try {
-//			con = DriverManager.getConnection(url, user, password);
-//			stmt = con.createStatement();
-//			rs = stmt.executeQuery(query);
-//			
-//			ListBox listBox1 = new ListBox();
-//			listBox1.setVisibleItemCount(1);
-//			while (rs.next()) {
-//			listBox1.addItem(rs.getString(2));
-//			}
-//
-//		} catch (SQLException sqlEx) {
-//			sqlEx.printStackTrace();
-//		} finally {
-//			try {
-//				con.close();
-//			} catch (SQLException se) {
-//			}
-//			try {
-//				stmt.close();
-//			} catch (SQLException se) {
-//			}
-//			try {
-//				rs.close();
-//			} catch (SQLException se) {
-//			}
-//		}
-//
-//	}
-	
-	// MYSQL END
-	
-	
-	
-	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
 		
-		ListBox listBox1 = new ListBox();
-		listBox1.setVisibleItemCount(1);
+
 		
-		String query = "select * from customs";
-
-		try {
-			con = DriverManager.getConnection(url, user, password);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			while (rs.next()) {
-			listBox1.addItem(rs.getString(2));
-			}
-		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-			try {con.close();} catch (SQLException se) {}
-			try {stmt.close();} catch (SQLException se) {}
-			try {rs.close();} catch (SQLException se) {}
-		}
-
-	
+//		ListBox listBox1 = new ListBox();
+//		listBox1.setVisibleItemCount(1);
+//		
 		
 		
 //SELECT
@@ -128,8 +62,8 @@ public class GWT1 implements EntryPoint {
 
 	      // Make a new list box, adding a few items to it.
 	      ListBox listBox2 = new ListBox();
-	      listBox2.addItem("First");
-	      listBox2.addItem("Second");
+	      listBox2.addItem("first", "1");
+	      listBox2.addItem("second", "2");
 	      listBox2.addItem("Third");
 	      listBox2.addItem("Fourth");
 	      listBox2.addItem("Fifth");
@@ -143,7 +77,7 @@ public class GWT1 implements EntryPoint {
 	      // Add listboxes to the root panel.
 	      VerticalPanel panel = new VerticalPanel();
 	      panel.setSpacing(10);
-	      panel.add(listBox1);
+//	      panel.add(listBox1);
 	      panel.add(listBox2);
 
 	      RootPanel.get("gwtContainer").add(panel);
@@ -221,6 +155,28 @@ public class GWT1 implements EntryPoint {
 				});
 			}
 		});
+		
+		
+//				greetingService.getSelect2(new AsyncCallback<ListBox>() {
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//			}
+//
+//			@Override
+//			public void onSuccess(ListBox result) {
+//				dialogBox.setText("EP");
+//				serverResponseLabel.removeStyleName("serverResponseLabelError");
+//				serverResponseLabel.setHTML((SafeHtml)result);
+//				dialogBox.center();
+//				closeButton.setFocus(true);
+//			}			
+//
+//
+//		});
+		
+		
+		
 		
 		// Create a handler for the sendButton and nameField
 		class MyHandler implements ClickHandler, KeyUpHandler {
