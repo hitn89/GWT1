@@ -148,17 +148,17 @@ public class GWT1 implements EntryPoint {
 		
 				
 		
-		greetingService.getSelect(new AsyncCallback<ArrayList<String>>() {
+		greetingService.getSelect(new AsyncCallback<List<String>>() {
 			@Override
-			public void onSuccess(ArrayList<String> getSelect) {
+			public void onSuccess(List<String> getSelect) {
 				for (String message : getSelect) {
 					chatArea.setText(chatArea.getText() + message + "\n");
 				}
 				dialogBox.setText("EP");
 				serverResponseLabel.removeStyleName("serverResponseLabelError");
-				String res = "FUCK";
+				String res = "";
 				for (String custom : getSelect) {
-					res += custom;
+					res += custom + "\n";
 				}
 				serverResponseLabel.setHTML(res);
 				dialogBox.center();

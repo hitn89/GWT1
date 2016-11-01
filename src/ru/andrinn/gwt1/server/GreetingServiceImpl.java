@@ -70,18 +70,18 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	
 
 		
-	public ArrayList<String> getSelect() {
+	public List<String> getSelect() {
 
 		String query = "select * from customs";
 	
-		ArrayList<String> customs = new ArrayList<String>();
+		List<String> customs = new ArrayList<String>();
 		
 		try {
 			con = (Connection) DriverManager.getConnection(url, user, password);
 			stmt = (Statement) con.createStatement();
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				customs.add(rs.getInt(1), rs.getString(2));
+				customs.add(rs.getString(2));
 			}
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();

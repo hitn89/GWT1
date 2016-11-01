@@ -13,7 +13,7 @@ public interface GreetingServiceAsync {
 
 	void getTime(AsyncCallback<String> callback);
 
-	void getSelect(AsyncCallback<ArrayList<String>> callback);
+	void getSelect(AsyncCallback<List<String>> callback);
 
 	void generateSelect(int id, String name, AsyncCallback<List<String>> callback);
 
