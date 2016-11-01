@@ -50,7 +50,10 @@ public class GWT1 implements EntryPoint {
 	public void onModuleLoad() {
 
 	      // Make a new list box, adding a few items to it.
-	      ListBox listBox2 = new ListBox();
+		ListBox listBox1 = new ListBox();
+
+		
+		ListBox listBox2 = new ListBox();
 	      listBox2.addItem("first", "1");
 	      listBox2.addItem("second", "2");
 	      listBox2.addItem("Third");
@@ -68,7 +71,7 @@ public class GWT1 implements EntryPoint {
 	      // Add listboxes to the root panel.
 	      VerticalPanel panel = new VerticalPanel();
 	      panel.setSpacing(10);
-//	      panel.add(listBox1);
+	      panel.add(listBox1);
 	      panel.add(listBox2);
 	      panel.add(chatArea);
 
@@ -146,13 +149,13 @@ public class GWT1 implements EntryPoint {
 			}
 		});
 		
-				
 		
 		greetingService.getSelect(new AsyncCallback<List<String>>() {
 			@Override
 			public void onSuccess(List<String> getSelect) {
 				for (String message : getSelect) {
 					chatArea.setText(chatArea.getText() + message + "\n");
+					listBox1.addItem(message);
 				}
 				dialogBox.setText("EP");
 				serverResponseLabel.removeStyleName("serverResponseLabelError");
