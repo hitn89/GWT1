@@ -2,6 +2,8 @@ package ru.andrinn.gwt1.client;
 
 import ru.andrinn.gwt1.shared.FieldVerifier;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -17,6 +19,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -39,26 +42,12 @@ public class GWT1 implements EntryPoint {
 	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
 
+	private TextArea chatArea;
+	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		
-
-		
-//		ListBox listBox1 = new ListBox();
-//		listBox1.setVisibleItemCount(1);
-//		
-		
-		
-//SELECT
-		// Make a new list box, adding a few items to it.
-//	      ListBox listBox1 = new ListBox();
-//	      listBox1.addItem("Первый");
-//	      listBox1.addItem("Second");
-//	      listBox1.addItem("Third");
-//	      listBox1.addItem("Fourth");
-//	      listBox1.addItem("Fifth");
 
 	      // Make a new list box, adding a few items to it.
 	      ListBox listBox2 = new ListBox();
@@ -67,22 +56,23 @@ public class GWT1 implements EntryPoint {
 	      listBox2.addItem("Third");
 	      listBox2.addItem("Fourth");
 	      listBox2.addItem("Fifth");
-
-	      // Make enough room for all five items 
-	      //listBox1.setVisibleItemCount(1);
 		  
 	      //setting itemcount value to 1 turns listbox into a drop-down list.
 	      listBox2.setVisibleItemCount(1);
+	      
+	      
+	      chatArea = new TextArea();
+	      chatArea.setSize("600px", "200px");
+	      
 
 	      // Add listboxes to the root panel.
 	      VerticalPanel panel = new VerticalPanel();
 	      panel.setSpacing(10);
 //	      panel.add(listBox1);
 	      panel.add(listBox2);
+	      panel.add(chatArea);
 
 	      RootPanel.get("gwtContainer").add(panel);
-		// FINISH SELECT
-		
 		
 		
 		final Button sendButton = new Button("Send");
@@ -156,24 +146,56 @@ public class GWT1 implements EntryPoint {
 			}
 		});
 		
+				
 		
-//				greetingService.getSelect2(new AsyncCallback<ListBox>() {
-//
-//			@Override
-//			public void onFailure(Throwable caught) {
-//			}
-//
-//			@Override
-//			public void onSuccess(ListBox result) {
-//				dialogBox.setText("EP");
-//				serverResponseLabel.removeStyleName("serverResponseLabelError");
-//				serverResponseLabel.setHTML((SafeHtml)result);
-//				dialogBox.center();
-//				closeButton.setFocus(true);
-//			}			
-//
-//
-//		});
+		greetingService.getSelect(new AsyncCallback<ArrayList<String>>() {
+			@Override
+			public void onSuccess(ArrayList<String> getSelect) {
+				for (String message : getSelect) {
+					chatArea.setText(chatArea.getText() + message + "\n");
+				}
+				dialogBox.setText("EP");
+				serverResponseLabel.removeStyleName("serverResponseLabelError");
+				String res = "FUCK";
+				for (String custom : getSelect) {
+					res += custom;
+				}
+				serverResponseLabel.setHTML(res);
+				dialogBox.center();
+				closeButton.setFocus(true);
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				chatArea.setText(chatArea.getText() + "Failurrre");
+				}
+		});
+		
+		
+		
+		
+		greetingService.generateSelect(0, null, new AsyncCallback<List<String>>() {
+			@Override
+			public void onSuccess(List<String> generateSelect) {
+				for (String message : generateSelect) {
+					chatArea.setText(chatArea.getText() + message + "\n");
+				}
+				dialogBox.setText("EP");
+				serverResponseLabel.removeStyleName("serverResponseLabelError");
+				String res = "FUCK";
+				for (String custom : generateSelect) {
+					res += custom;
+				}
+				serverResponseLabel.setHTML(res);
+				dialogBox.center();
+				closeButton.setFocus(true);
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				chatArea.setText(chatArea.getText() + "Failurrre");
+				}
+		});
 		
 		
 		

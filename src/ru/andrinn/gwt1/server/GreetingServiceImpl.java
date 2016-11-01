@@ -73,8 +73,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	public ArrayList<String> getSelect() {
 
 		String query = "select * from customs";
-		//String result = "";
-		List<String> customs = new ArrayList<String>();
+	
+		ArrayList<String> customs = new ArrayList<String>();
 		
 		try {
 			con = (Connection) DriverManager.getConnection(url, user, password);
@@ -82,7 +82,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				customs.add(rs.getInt(1), rs.getString(2));
-				//result += rs.getString(2);
 			}
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();
@@ -92,34 +91,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			try {rs.close();} catch (SQLException se) {}
 		}
 		
-		return (ArrayList<String>) customs;
+		return customs;
+	}
+
+
+	@Override
+	public List<String> generateSelect(int id, String name) throws IllegalArgumentException {
+		List<String> select = new ArrayList<String>();
+		select.add("blablabla");
+		return select;
 	}
 	
-	
-//	public ListBox getSelect2() {
-//
-//		String query = "select * from customs";
-//		ListBox listBox1 = new ListBox();
-//		listBox1.setVisibleItemCount(1);
-//		
-//		try {
-//			con = (Connection) DriverManager.getConnection(url, user, password);
-//			stmt = (Statement) con.createStatement();
-//			rs = stmt.executeQuery(query);
-//			while (rs.next()) {
-//				listBox1.addItem(rs.getString(2), rs.getString(1));
-//			}
-//		} catch (SQLException sqlEx) {
-//			sqlEx.printStackTrace();
-//		} finally {
-//			try {con.close();} catch (SQLException se) {}
-//			try {stmt.close();} catch (SQLException se) {}
-//			try {rs.close();} catch (SQLException se) {}
-//		}
-//		
-//		return listBox1;
-//	}
-//	
 	
 	
 }
